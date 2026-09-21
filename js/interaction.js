@@ -1,5 +1,11 @@
+// ФИКС БАГА 2: Снятие черного экрана при переходе по стрелке "Назад" (BFCache)
+window.addEventListener("pageshow", () => {
+  document.body.classList.remove("page-fade-out");
+});
+
 // Логика главной страницы: синхронизация артборда, мобильного переключателя превью и тем
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.remove("page-fade-out");
   const rowsContainer = document.getElementById("projectRowsContainer");
   const stageNum = document.getElementById("stageNum");
   const stageName = document.getElementById("stageName");
@@ -16,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentCaseIndex = 0;
   const totalCases = designerCases.length;
-
+  
   // Централизованная функция обновления активного кейса
   function setActiveCase(index) {
     if (index < 0 || index >= totalCases) return;

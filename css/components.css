@@ -786,29 +786,26 @@ pre.pixel-ascii-arrow {
 }
 
 /* ==========================================================================
-   ФИНАЛЬНАЯ АДАПТИВНАЯ СИСТЕМА (БЕЗ БЛОКИРОВОК СКРОЛЛА)
+   ФИНАЛЬНАЯ АДАПТИВНАЯ СИСТЕМА: С УЧЕТОМ BUGS FIX
    ========================================================================== */
-
-/* Мобильный переключатель кейсов: на десктопе и планшетах строго скрыт */
-.stage-nav-mobile {
-  display: none;
-}
-
-
 
 /* Скрываем мобильные ссылки подвала на десктопе */
 .mobile-footer-links {
   display: none;
 }
 
-/* ГАРАНТИЯ СКРОЛЛА ДЛЯ СТРАНИЦЫ КЕЙСА (project.html) НА ЛЮБЫХ ЭКРАНАХ */
+/* Мобильный переключатель превью на десктопе скрыт */
+.stage-nav-mobile {
+  display: none;
+}
+
 /* ГАРАНТИЯ ОДИНОЧНОГО СКРОЛЛА ДЛЯ СТРАНИЦЫ КЕЙСА (project.html) */
 html:has(.project-page-wrapper) {
   height: auto !important;
   min-height: 100% !important;
   max-height: none !important;
   overflow-x: hidden !important;
-  overflow-y: auto !important; /* Единственный скролл на всю страницу */
+  overflow-y: auto !important;
   position: static !important;
 }
 
@@ -816,7 +813,7 @@ body:has(.project-page-wrapper) {
   height: auto !important;
   min-height: 100% !important;
   max-height: none !important;
-  overflow: visible !important; /* Убираем дублирующий скроллбар у body */
+  overflow: visible !important;
   position: static !important;
 }
 
@@ -826,9 +823,10 @@ body:has(.project-page-wrapper) .sheet-wrapper {
   overflow: visible !important;
 }
 
-/* 1. ПЛАНШЕТЫ И СРЕДНИЕ ЭКРАНЫ (769px – 1280px) */
-@media (min-width: 769px) and (max-width: 1280px) {
-  /* Фиксируем Zero-Scroll ТОЛЬКО для главной страницы (index.html) */
+/* --------------------------------------------------------------------------
+   1. ПЛАНШЕТЫ (769px–1280px) — ZERO-SCROLL ТОЛЬКО ПРИ ДОСТАТОЧНОЙ ВЫСОТЕ (>=600px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) and (max-width: 1280px) and (min-height: 600px) {
   html:not(:has(.project-page-wrapper)),
   body:not(:has(.project-page-wrapper)) {
     height: 100dvh !important;
@@ -926,67 +924,23 @@ body:has(.project-page-wrapper) .sheet-wrapper {
   }
 }
 
-/* 2. СМАРТФОНЫ (<= 768px): ПОЛНЫЙ ВЕРТИКАЛЬНЫЙ СКРОЛЛ, СПИСОК ВНИЗУ */
-@media (max-width: 768px) {
+/* --------------------------------------------------------------------------
+   2. СМАРТФОНЫ (<= 768px) И ТЕЛЕФОНЫ В ГОРИЗОНТАЛЬНОЙ ОРИЕНТАЦИИ (высота <= 600px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px), (max-height: 600px) {
   html, body {
     height: auto !important;
     min-height: 100% !important;
     max-height: none !important;
     overflow-x: hidden !important;
-    overflow-y: auto !important;
+    overflow-y: auto !important; /* ФИКС БАГА 4: ВСЕГДА РАЗРЕШАЕМ СКРОЛЛ ПРИ МАЛОЙ ВЫСОТЕ */
     position: static !important;
   }
 
   body {
-    padding: 12px 10px 40px 10px;
+    padding: 10px 8px 40px 8px;
     display: block;
     box-sizing: border-box;
-  }
-
-  /* Показываем панель только на смартфонах */
-  .stage-nav-mobile {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    border: 1px solid var(--border-color);
-    background: var(--bg-card);
-    margin-bottom: 14px;
-    box-sizing: border-box;
-    user-select: none;
-  }
-
-  .btn-stage-nav {
-    padding: 12px 14px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--text-primary);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: var(--transition);
-    touch-action: manipulation;
-  }
-
-  .btn-stage-nav:hover,
-  .btn-stage-nav:active {
-    color: var(--accent-orange);
-    background: var(--accent-orange-soft);
-  }
-
-  .stage-nav-counter {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 800;
-    color: var(--accent-orange);
-    letter-spacing: 0.08em;
-  }
-
-  /* Чуть уменьшаем нижний отступ картинки, чтобы пульт стоял вплотную */
-  .stage-image-card {
-    margin-bottom: 10px !important;
   }
 
   .sheet-wrapper {
@@ -998,7 +952,7 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   }
 
-  /* Скрываем вертикальные колонки на мобилках */
+  /* Скрываем вертикальные сайдбары */
   .side-gutter {
     display: none !important;
   }
@@ -1016,16 +970,16 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     font-weight: 800;
   }
 
-  .top-meta {
+  .top-meta span:first-child,
+  .top-meta .meta-link-dprofile {
+    display: none;
+  }
+
+  .status-indicator {
     font-size: 10px;
   }
 
-  .top-meta span:first-child,
-  .top-meta .meta-link-dprofile {
-    display: none; /* Скрываем длинный город и ссылку, оставляем статус */
-  }
-
-  /* Центральный сплит переводим в честную вертикальную колонку */
+  /* Сплит контента в вертикальный стек */
   .content-split {
     display: flex;
     flex-direction: column;
@@ -1034,35 +988,60 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     overflow: visible !important;
   }
 
-  /* ВЕРХ: Активный кейс */
   .stage-panel {
     border-right: none;
     border-bottom: 1px solid var(--border-color);
-    padding: 24px 16px;
-    background: transparent;
-  }
-
-  .stage-header {
-    margin-bottom: 8px;
+    padding: 20px 14px;
   }
 
   .stage-name {
-    font-size: 24px;
-    margin-bottom: 14px;
+    font-size: 22px;
+    margin-bottom: 12px;
     line-height: 1.2;
   }
 
   .stage-image-card {
     width: 100%;
     height: 220px;
+    margin-bottom: 10px !important;
+  }
+
+  /* Мобильный переключатель кейсов */
+  .stage-nav-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
     margin-bottom: 14px;
+    box-sizing: border-box;
+  }
+
+  .btn-stage-nav {
+    padding: 12px 14px;
+    font-family: var(--font-family) !important; /* Единый шрифт */
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .stage-nav-counter {
+    font-family: var(--font-family) !important;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent-orange);
   }
 
   .stage-footer {
     margin-top: 10px;
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
+    gap: 14px;
   }
 
   .stage-description {
@@ -1078,22 +1057,20 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     font-size: 12px;
   }
 
-  /* НИЗ: Реестр всех проектов */
+  /* Реестр проектов */
   .index-panel {
     width: 100%;
-    border-top: none;
     background: var(--bg-card);
   }
 
   .index-header {
-    padding: 12px 16px;
+    padding: 12px 14px;
     font-size: 10px;
-    background: rgba(127, 127, 127, 0.04);
   }
 
   .project-row {
     grid-template-columns: 50px 1fr 20px;
-    padding: 16px;
+    padding: 16px 14px;
     gap: 10px;
   }
 
@@ -1105,22 +1082,12 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     font-size: 11px;
   }
 
-  /* Подвал: переключатель тем + Telegram */
+  /* Подвал и кнопки тем */
   .bottom-utility-bar {
-    padding: 18px 16px;
+    padding: 16px 14px;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     align-items: stretch;
-  }
-
-  .utility-theme-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .utility-label {
-    font-size: 10px;
   }
 
   .theme-switcher-group {
@@ -1131,10 +1098,12 @@ body:has(.project-page-wrapper) .sheet-wrapper {
   .btn-theme-toggle {
     flex: 1;
     text-align: center;
-    padding: 8px 6px;
+    padding: 10px 6px;
     font-size: 11px;
+    font-family: var(--font-family) !important;
   }
 
+  /* ФИКС БАГА 3: ЕДИНЫЙ ШРИФТ И СТИЛЬ КНОПОК ТЕЛЕГРАМА */
   .mobile-footer-links {
     display: flex;
     gap: 10px;
@@ -1146,13 +1115,19 @@ body:has(.project-page-wrapper) .sheet-wrapper {
   .mobile-link {
     flex: 1;
     text-align: center;
-    padding: 10px;
+    padding: 12px 8px;
     font-size: 11px;
     font-weight: 700;
-    font-family: var(--font-mono);
+    font-family: var(--font-family) !important; /* Убираем моно-шрифт, ставим системный гротеск */
+    letter-spacing: 0.05em;
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     background: var(--bg-card);
+    text-decoration: none !important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
   }
 
   .mobile-link.accent {
@@ -1167,11 +1142,11 @@ body:has(.project-page-wrapper) .sheet-wrapper {
 
   .detail-title {
     font-size: 26px;
-    margin: 10px 0 14px 0;
+    margin: 8px 0 12px 0;
   }
 
   .detail-lead {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .detail-hero-cover {
@@ -1181,14 +1156,14 @@ body:has(.project-page-wrapper) .sheet-wrapper {
 
   .detail-body-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   .detail-sidebar {
     border-right: none;
     border-bottom: 1px solid var(--border-color);
     padding-right: 0;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 16px;
@@ -1204,10 +1179,29 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     padding: 6px 8px;
   }
 
+  /* ФИКС БАГА 1: КНОПКИ ВНИЗУ КЕЙСА НЕ ВЫПАДАЮТ, А ВСТАЮТ СТЕКОМ */
+  .project-footer-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding-top: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .project-footer-actions .btn-open-case {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 16px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
   .scroll-top-btn {
-    bottom: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
+    bottom: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
   }
 }

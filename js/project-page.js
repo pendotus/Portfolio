@@ -1,5 +1,10 @@
+window.addEventListener("pageshow", () => {
+  document.body.classList.remove("page-fade-out");
+});
+
 // Логика длинной страницы кейса (project.html)
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.remove("page-fade-out");
   const landscape = new AsciiLandscapeEngine("asciiBackground");
   landscape.start();
   new PortfolioThemeManager(landscape);
@@ -66,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navigateSmoothly(link.href);
     });
   });
-  
+
   // Генерация длинной вертикальной презентации кейса (поддержка изображений и видео)
   const slidesContainer = document.getElementById("showcaseSlidesStack");
   if (slidesContainer) {
