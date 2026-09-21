@@ -1,0 +1,33 @@
+:root {
+  /* Базовая светлая тема (ДЕНЬ / ZAKAT) */
+  --bg-page: #fffcf5;
+  --bg-card: #ffffff;
+  --border-color: #000000;
+  --border-subtle: #000000;
+  --text-primary: #111317;
+  --text-secondary: #585f6f;
+  --text-muted: #8d94a5;
+  --accent-orange: #ff5500;
+  --accent-orange-soft: #fff2ec;
+  --ascii-char-color: rgba(255, 85, 0, 0.24);
+
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, sans-serif;
+  --font-mono: "SF Mono", "Consolas", "Courier New", monospace;
+  --canvas-width: 1380px;
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ТЕМНАЯ ТЕМА (НОЧЬ) */
+body[data-theme="night"] {
+  color-scheme: dark; /* Принуждает браузер красить системные скроллбары в темный */
+  --bg-page: rgb(10, 10, 10);
+  --bg-card: #1d1b18;
+  --border-color: #000000;
+  --border-subtle: #000000;
+  --text-primary: #f5f6fa;
+  --text-secondary: #9da4b4;
+  --text-muted: #5e6475;
+  --accent-orange: #ff6a1a;
+  --accent-orange-soft: #231914;
+  --ascii-char-color: rgba(255, 106, 26, 0.32);
+}

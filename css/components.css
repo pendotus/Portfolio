@@ -1,0 +1,1213 @@
+/* Планшет портфолио */
+.sheet-wrapper {
+  width: var(--canvas-width);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  position: relative;
+  z-index: 10;
+  transition: var(--transition);
+}
+
+/* Сайдбары */
+.side-gutter {
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  user-select: none;
+}
+
+.side-gutter-right {
+  border-right: none;
+  border-left: 1px solid var(--border-color);
+}
+
+.gutter-top-time {
+  margin-top: 10px;
+}
+
+.gutter-bottom-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  margin-bottom: 20px;
+}
+
+.vertical-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.vertical-label:hover {
+  color: var(--text-primary);
+}
+
+.mono-time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.accent-link,
+.channel-link {
+  color: var(--accent-orange) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.accent-link:hover,
+.channel-link:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Слот для маскота BigBoss */
+.mascot-slot {
+  width: 34px;
+  height: 34px;
+  opacity: 0.35;
+  transition: var(--transition);
+  cursor: pointer;
+  user-select: none;
+}
+
+.mascot-slot:hover {
+  opacity: 1;
+  transform: scale(1.18) rotate(4deg);
+}
+
+.mascot-slot svg {
+  width: 100%;
+  height: 100%;
+  color: var(--text-primary); /* Базовый цвет иконки */
+}
+
+.mascot-slot:hover svg {
+  color: var(--accent-orange); /* Цвет иконки при наведении становится оранжевым */
+}
+
+/* Центральная зона */
+.sheet-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 36px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.brand-title span {
+  color: var(--accent-orange);
+}
+
+.top-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  align-items: center;
+}
+
+/* Единый стиль ссылок Dprofile и Telegram (без подчеркивания, активный оранжевый цвет, ховер в цвет текста) */
+.meta-link-dprofile,
+.channel-link,
+.accent-link {
+  color: var(--accent-orange) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  transition: var(--transition);
+}
+
+.meta-link-dprofile:hover,
+.channel-link:hover,
+.accent-link:hover {
+  color: var(--text-primary) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+.status-badge-orange {
+  background: var(--accent-orange);
+  color: #fff;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* Сплит контента главной страницы */
+.content-split {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  min-height: 640px;
+}
+
+.stage-panel {
+  padding: 36px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(127, 127, 127, 0.02);
+}
+
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.stage-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.stage-hint {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.stage-name {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.stage-image-card {
+  width: 100%;
+  height: 330px;
+  border: 1px solid var(--border-color);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--border-subtle);
+  transition: var(--transition);
+}
+
+.stage-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.stage-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 420px;
+  line-height: 1.5;
+}
+
+.btn-open-case,
+.btn-accent {
+  background: var(--accent-orange);
+  color: #ffffff;
+  border: 1px solid var(--accent-orange);
+  padding: 12px 24px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-open-case:hover,
+.btn-accent:hover {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transform: translateY(-2px);
+}
+
+/* Правый реестр */
+.index-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.index-header {
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.project-rows-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+}
+
+.project-row:hover {
+  background: rgba(127, 127, 127, 0.05);
+}
+
+.project-row.active {
+  background: var(--accent-orange-soft);
+}
+
+.project-row.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-orange);
+}
+
+.row-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.project-row.active .row-date {
+  color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.row-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.row-category {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.row-action-icon {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.project-row.active .row-action-icon {
+  color: var(--accent-orange);
+  transform: translateX(4px);
+}
+
+/* Нижняя сервисная плашка с кнопками тем */
+.bottom-utility-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 36px;
+  border-top: 1px solid var(--border-color);
+  background: rgba(127, 127, 127, 0.02);
+}
+
+.utility-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.theme-switcher-group {
+  display: flex;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.btn-theme-toggle {
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  border-right: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.btn-theme-toggle:last-child {
+  border-right: none;
+}
+
+.btn-theme-toggle:hover {
+  color: var(--text-primary);
+}
+
+.btn-theme-toggle.active {
+  background: var(--accent-orange);
+  color: #fff;
+}
+
+/* СТРАНИЦА КЕЙСА: project.html */
+.project-page-wrapper {
+  min-height: 90vh;
+}
+
+.project-detail-layout {
+  padding: 48px;
+}
+
+.project-detail-header {
+  margin-bottom: 24px;
+}
+
+.detail-category {
+  font-family: var(--font-mono);
+  color: var(--accent-orange);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.detail-title {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 10px 0 16px 0;
+}
+
+.detail-lead {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 840px;
+  line-height: 1.6;
+}
+
+.detail-hero-cover {
+  width: 100%;
+  height: 520px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+/* Панель перехода между кейсами прямо сверху */
+.project-pagination-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.pagination-btn {
+  position: relative;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  padding: 10px 16px;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Левая кнопка навигации: при наведении подсветка слева */
+.pagination-btn:first-child:hover {
+  color: var(--accent-orange);
+  background: var(--accent-orange-soft);
+}
+
+.pagination-btn:first-child:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-orange);
+}
+
+/* Правая кнопка навигации: при наведении подсветка справа */
+.pagination-btn:last-child:hover {
+  color: var(--accent-orange);
+  background: var(--accent-orange-soft);
+}
+
+.pagination-btn:last-child:hover::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-orange);
+}
+
+.pagination-counter {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+.detail-body-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+
+.detail-sidebar {
+  border-right: 1px solid var(--border-color);
+  padding-right: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.meta-item .meta-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.meta-item .meta-val {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.detail-text-content h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.detail-paragraph {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ДЛИННАЯ СЕКЦИЯ ПРЕЗЕНТАЦИИ КЕЙСА: СТРОГО 0 ОТСТУПОВ МЕЖДУ СЛАЙДАМИ */
+.presentation-showcase-section {
+  border-top: 1px solid var(--border-color);
+  padding-top: 40px;
+  margin-bottom: 48px;
+}
+
+.showcase-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.showcase-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--accent-orange);
+  letter-spacing: 0.1em;
+}
+
+.showcase-hint {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Стек слайдов презентации: расстояние между слайдами строго 0, бесшовный монолит */
+.showcase-slides-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.showcase-slide-item {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+  border: none !important;
+  display: block;
+}
+
+/* Видео-слайды презентации (Kinescope Embed) с нулевыми зазорами */
+.showcase-video-item {
+  line-height: normal !important;
+  font-size: initial !important;
+  background: #000000;
+  display: block;
+  width: 100%;
+}
+
+.video-responsive-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Точное соотношение 16:9 */
+  height: 0;
+  overflow: hidden;
+  background: #000000;
+}
+
+.video-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none !important;
+  display: block;
+}
+
+.showcase-slide-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  vertical-align: top; 
+}
+
+.project-footer-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Секретный пульт шефа (пасхалка) */
+.dev-control-panel {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-orange);
+  padding: 16px 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 280px;
+  transition: var(--transition);
+}
+
+.dev-control-panel.easter-egg-hidden {
+  display: none !important;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--accent-orange);
+  letter-spacing: 0.08em;
+}
+
+.btn-panel-close {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.btn-panel-close:hover {
+  color: var(--accent-orange);
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.time-readout {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 800;
+  min-width: 55px;
+}
+
+.time-range {
+  flex: 1;
+  accent-color: var(--accent-orange);
+  cursor: pointer;
+}
+
+.theme-readout {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.theme-readout span {
+  color: var(--accent-orange);
+}
+
+
+/* Кнопка "Наверх" для страниц кейсов: отдельный квадрат без скруглений с пиксельной ASCII-стрелкой */
+/* Кнопка "Наверх" для страниц кейсов: отдельный квадрат строго без скруглений с пиксельной ASCII-стрелкой */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 990;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+  background: var(--accent-orange);
+  border-color: var(--accent-orange);
+  transform: translateY(-3px);
+}
+
+pre.pixel-ascii-arrow {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: "SF Mono", "Consolas", "Courier New", monospace !important;
+  font-size: 11px !important;
+  line-height: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  text-align: center !important;
+  color: var(--text-primary);
+  user-select: none;
+  pointer-events: none;
+  white-space: pre !important;
+  display: block !important;
+  transition: color 0.2s ease;
+}
+
+.scroll-top-btn:hover pre.pixel-ascii-arrow {
+  color: #ffffff !important;
+}
+
+.project-pagination-bar-bottom {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   ФИНАЛЬНАЯ АДАПТИВНАЯ СИСТЕМА (БЕЗ БЛОКИРОВОК СКРОЛЛА)
+   ========================================================================== */
+
+/* Мобильный переключатель кейсов: на десктопе и планшетах строго скрыт */
+.stage-nav-mobile {
+  display: none;
+}
+
+
+
+/* Скрываем мобильные ссылки подвала на десктопе */
+.mobile-footer-links {
+  display: none;
+}
+
+/* ГАРАНТИЯ СКРОЛЛА ДЛЯ СТРАНИЦЫ КЕЙСА (project.html) НА ЛЮБЫХ ЭКРАНАХ */
+/* ГАРАНТИЯ ОДИНОЧНОГО СКРОЛЛА ДЛЯ СТРАНИЦЫ КЕЙСА (project.html) */
+html:has(.project-page-wrapper) {
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important; /* Единственный скролл на всю страницу */
+  position: static !important;
+}
+
+body:has(.project-page-wrapper) {
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  overflow: visible !important; /* Убираем дублирующий скроллбар у body */
+  position: static !important;
+}
+
+body:has(.project-page-wrapper) .sheet-wrapper {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* 1. ПЛАНШЕТЫ И СРЕДНИЕ ЭКРАНЫ (769px – 1280px) */
+@media (min-width: 769px) and (max-width: 1280px) {
+  /* Фиксируем Zero-Scroll ТОЛЬКО для главной страницы (index.html) */
+  html:not(:has(.project-page-wrapper)),
+  body:not(:has(.project-page-wrapper)) {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  body:not(:has(.project-page-wrapper)) {
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  body:not(:has(.project-page-wrapper)) .sheet-wrapper {
+    width: 100%;
+    height: calc(100dvh - 24px);
+    max-height: calc(100dvh - 24px);
+    grid-template-columns: 44px 1fr 44px;
+    overflow: hidden;
+  }
+
+  .side-gutter {
+    padding: 16px 0;
+  }
+
+  .vertical-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .top-bar {
+    padding: 14px 20px;
+  }
+
+  .brand-title {
+    font-size: 15px;
+  }
+
+  .content-split {
+    min-height: 0 !important;
+    height: calc(100% - 96px);
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .stage-panel {
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .stage-name {
+    font-size: clamp(20px, 2.8vh, 28px);
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+
+  .stage-image-card {
+    height: clamp(160px, 28vh, 270px);
+    flex-shrink: 1;
+  }
+
+  .stage-description {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .btn-open-case {
+    padding: 10px 16px;
+    font-size: 11px;
+  }
+
+  .index-panel {
+    overflow: hidden;
+  }
+
+  .project-rows-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .project-row {
+    padding: clamp(8px, 1.3vh, 16px) 18px;
+  }
+
+  .row-title {
+    font-size: 13px;
+  }
+
+  .row-category {
+    font-size: 11px;
+  }
+
+  .bottom-utility-bar {
+    padding: 10px 20px;
+  }
+}
+
+/* 2. СМАРТФОНЫ (<= 768px): ПОЛНЫЙ ВЕРТИКАЛЬНЫЙ СКРОЛЛ, СПИСОК ВНИЗУ */
+@media (max-width: 768px) {
+  html, body {
+    height: auto !important;
+    min-height: 100% !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    position: static !important;
+  }
+
+  body {
+    padding: 12px 10px 40px 10px;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  /* Показываем панель только на смартфонах */
+  .stage-nav-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  .btn-stage-nav {
+    padding: 12px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    touch-action: manipulation;
+  }
+
+  .btn-stage-nav:hover,
+  .btn-stage-nav:active {
+    color: var(--accent-orange);
+    background: var(--accent-orange-soft);
+  }
+
+  .stage-nav-counter {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent-orange);
+    letter-spacing: 0.08em;
+  }
+
+  /* Чуть уменьшаем нижний отступ картинки, чтобы пульт стоял вплотную */
+  .stage-image-card {
+    margin-bottom: 10px !important;
+  }
+
+  .sheet-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Скрываем вертикальные колонки на мобилках */
+  .side-gutter {
+    display: none !important;
+  }
+
+  /* Шапка */
+  .top-bar {
+    padding: 14px 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-title {
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .top-meta {
+    font-size: 10px;
+  }
+
+  .top-meta span:first-child,
+  .top-meta .meta-link-dprofile {
+    display: none; /* Скрываем длинный город и ссылку, оставляем статус */
+  }
+
+  /* Центральный сплит переводим в честную вертикальную колонку */
+  .content-split {
+    display: flex;
+    flex-direction: column;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* ВЕРХ: Активный кейс */
+  .stage-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 24px 16px;
+    background: transparent;
+  }
+
+  .stage-header {
+    margin-bottom: 8px;
+  }
+
+  .stage-name {
+    font-size: 24px;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .stage-image-card {
+    width: 100%;
+    height: 220px;
+    margin-bottom: 14px;
+  }
+
+  .stage-footer {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .stage-description {
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .btn-open-case {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 12px;
+  }
+
+  /* НИЗ: Реестр всех проектов */
+  .index-panel {
+    width: 100%;
+    border-top: none;
+    background: var(--bg-card);
+  }
+
+  .index-header {
+    padding: 12px 16px;
+    font-size: 10px;
+    background: rgba(127, 127, 127, 0.04);
+  }
+
+  .project-row {
+    grid-template-columns: 50px 1fr 20px;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .row-title {
+    font-size: 14px;
+  }
+
+  .row-category {
+    font-size: 11px;
+  }
+
+  /* Подвал: переключатель тем + Telegram */
+  .bottom-utility-bar {
+    padding: 18px 16px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .utility-theme-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .utility-label {
+    font-size: 10px;
+  }
+
+  .theme-switcher-group {
+    width: 100%;
+    display: flex;
+  }
+
+  .btn-theme-toggle {
+    flex: 1;
+    text-align: center;
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  .mobile-footer-links {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 14px;
+  }
+
+  .mobile-link {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }
+
+  .mobile-link.accent {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange) !important;
+  }
+
+  /* Специфика мобильного кейса (project.html) */
+  .project-detail-layout {
+    padding: 20px 14px;
+  }
+
+  .detail-title {
+    font-size: 26px;
+    margin: 10px 0 14px 0;
+  }
+
+  .detail-lead {
+    font-size: 15px;
+  }
+
+  .detail-hero-cover {
+    height: 220px;
+    margin-bottom: 16px;
+  }
+
+  .detail-body-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .detail-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-right: 0;
+    padding-bottom: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .project-pagination-bar {
+    padding: 10px 12px;
+    margin-bottom: 20px;
+  }
+
+  .pagination-btn {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+
+  .scroll-top-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}

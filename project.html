@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Проекты // Mark Yatsiv Portfolio</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body data-theme="day">
+
+  <canvas id="asciiBackground" class="ascii-canvas" aria-hidden="true"></canvas>
+
+  <aside class="dev-control-panel easter-egg-hidden" id="devPanel">
+    <div class="panel-header">
+      <span class="panel-tag">SECRET DEV OVERRIDE</span>
+      <button id="closeDevPanelBtn" class="btn-panel-close">&times;</button>
+    </div>
+    <div class="slider-row">
+      <span class="time-readout" id="timeDisplay">12:00</span>
+      <input type="range" id="timeSlider" min="0" max="23.9" step="0.1" value="12" class="time-range">
+    </div>
+    <div class="theme-readout">ФАЗА: <span id="themeLabel">DAY</span></div>
+  </aside>
+
+  <div class="sheet-wrapper project-page-wrapper">
+    
+    <aside class="side-gutter">
+      <span class="vertical-label">CASE DETAILS // ARCHIVE</span>
+      <div class="mascot-slot" id="mascotContainer" title="BigBoss Slot (кликни 5 раз подряд)">
+        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M233.3,597.78c0,181.79,191.92,225.48,266.4,225.48s283.68-26.83,283.68-220.08"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M233.3,494.44c0-73.91,55.24-209.06,209.06-209.06"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M407.86,399.24c-156.96,0-201.86-59.14-201.86-223.24"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M783.7,494.44c0-73.91-55.24-209.06-209.06-209.06"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M635.38,395.08c108.3,0,158.36-54.98,158.36-219.08"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M347.06,554.76c0-47.52,60.48-60.48,60.48-60.48"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M574.58,554.76c0-47.52,60.48-60.48,60.48-60.48"/>
+        </svg>
+      </div>
+    </aside>
+
+    <main class="sheet-main">
+      <header class="top-bar">
+        <a href="index.html" class="brand-title page-transition-link">MARK YATSIV <span>/</span> BACK TO INDEX</a>
+        <div class="top-meta">
+          <span id="projectCodeBadge" class="status-badge-orange">CASE</span>
+          <span id="projectYearBadge">2026</span>
+        </div>
+      </header>
+
+      <article class="project-detail-layout">
+        <!-- Шапка кейса -->
+        <header class="project-detail-header">
+          <span id="projectCategory" class="detail-category">ДИСЦИПЛИНА</span>
+          <h1 id="projectTitle" class="detail-title">Загрузка проекта...</h1>
+          <p id="projectSummary" class="detail-lead"></p>
+        </header>
+
+        <!-- Главный баннер-обложка -->
+        <div id="projectHeroImage" class="detail-hero-cover"></div>
+
+        <!-- Навигация: Переход между кейсами сверху -->
+        <nav class="project-pagination-bar">
+          <a id="prevProjectLink" href="#" class="pagination-btn page-transition-link">← Предыдущий кейс</a>
+          <span id="paginationIndicator" class="pagination-counter">01 / 06</span>
+          <a id="nextProjectLink" href="#" class="pagination-btn page-transition-link">Следующий кейс →</a>
+        </nav>
+
+        <!-- Метаданные и текст -->
+        <section class="detail-body-grid">
+          <div class="detail-sidebar">
+            <div class="meta-item">
+              <span class="meta-label">ЗАДАЧА</span>
+              <p id="projectClientDesc" class="meta-val">Графическая система и брендинг</p>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Мое портфолио на другом сайте</span>
+              <a href="https://dprofile.ru/pendotus" target="_blank" rel="noopener noreferrer" class="meta-link-dprofile">
+                dprofile.ru/pendotus ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="detail-text-content">
+            <h3>Концепция и реализация</h3>
+            <p id="projectFullDescription" class="detail-paragraph"></p>
+          </div>
+        </section>
+
+        <!-- ДЛИННАЯ СЕКЦИЯ ПРЕЗЕНТАЦИИ КЕЙСА: СТРОГО 0 GAP МЕЖДУ СЛАЙДАМИ -->
+        <section class="presentation-showcase-section">
+          <div class="showcase-header-bar">
+            <span class="showcase-tag">DPROFILE CASE SHOWCASE</span>
+            <span class="showcase-hint">ПОЛНАЯ ПРЕЗЕНТАЦИЯ ПРОЕКТА</span>
+          </div>
+
+          <!-- Стек широкоформатных слайдов презентации -->
+          <div id="showcaseSlidesStack" class="showcase-slides-stack"></div>
+        </section>
+
+        <!-- Продублированная навигация в конце кейса -->
+        <nav class="project-pagination-bar project-pagination-bar-bottom">
+          <a id="prevProjectLinkBottom" href="#" class="pagination-btn page-transition-link">← Предыдущий кейс</a>
+          <span id="paginationIndicatorBottom" class="pagination-counter">01 / 06</span>
+          <a id="nextProjectLinkBottom" href="#" class="pagination-btn page-transition-link">Следующий кейс →</a>
+        </nav>
+
+        <!-- Финальный блок перехода и контактов -->
+        <div class="project-footer-actions">
+          <a href="index.html" class="btn-open-case page-transition-link">← В общий каталог</a>
+          <a href="https://t.me/pendotus" target="_blank" rel="noopener noreferrer" class="btn-open-case btn-accent">
+            Связаться со мной ↗
+          </a>
+        </div>
+      </article>
+
+      <!-- Нижний бар переключения тем в кейсе -->
+      <footer class="bottom-utility-bar">
+        <span class="utility-label">ТЕМА:</span>
+        <div class="theme-switcher-group">
+          <button class="btn-theme-toggle" data-theme-mode="light">СВЕТЛАЯ</button>
+          <button class="btn-theme-toggle" data-theme-mode="dark">ТЕМНАЯ</button>
+          <button class="btn-theme-toggle active" data-theme-mode="auto">АВТО</button>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="side-gutter side-gutter-right">
+      <div class="gutter-top-time">
+        <span class="vertical-label mono-time" id="userLiveClock">--:--:--</span>
+      </div>
+      <div class="gutter-bottom-links">
+        <a href="https://t.me/desigyatsiv" target="_blank" rel="noopener noreferrer" class="vertical-label channel-link">
+          TELEGRAM КАНАЛ ↗
+        </a>
+        <a href="https://t.me/pendotus" target="_blank" rel="noopener noreferrer" class="vertical-label accent-link">
+          TELEGRAM ↗
+        </a>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Кнопка "Наверх": отдельный квадрат без скруглений с пиксельной ASCII-стрелкой (только на странице кейсов) -->
+  <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Наверх" title="Наверх">
+    <pre class="pixel-ascii-arrow">  /\  
+ /  \ 
+  ||  </pre>
+  </button>
+
+  <script src="js/data.js"></script>
+  <script src="js/ascii-background.js"></script>
+  <script src="js/theme-manager.js"></script>
+  <script src="js/project-page.js"></script>
+</body>
+</html>

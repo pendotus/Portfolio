@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Mark Yatsiv // Graphic Design & Identity</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body data-theme="day">
+
+  <!-- Адаптивный процедурный ASCII-холст Canvas (100vw x 100vh) -->
+  <canvas id="asciiBackground" class="ascii-canvas" aria-hidden="true"></canvas>
+
+  <!-- Скрытый пасхалочный пульт разработчика (открывается по 5 быстрым кликам на BigBoss) -->
+  <aside class="dev-control-panel easter-egg-hidden" id="devPanel">
+    <div class="panel-header">
+      <span class="panel-tag">SECRET DEV OVERRIDE</span>
+      <button id="closeDevPanelBtn" class="btn-panel-close" title="Закрыть пульт">&times;</button>
+    </div>
+    <div class="slider-row">
+      <span class="time-readout" id="timeDisplay">12:00</span>
+      <input type="range" id="timeSlider" min="0" max="23.9" step="0.1" value="12" class="time-range">
+    </div>
+    <div class="theme-readout">ФАЗА: <span id="themeLabel">DAY</span></div>
+  </aside>
+
+  <div class="sheet-wrapper">
+    
+    <!-- Левый край: вертикальный штамп + слот маскота BigBoss -->
+    <aside class="side-gutter">
+      <span class="vertical-label">ARCHIVE // 2023—2026</span>
+      
+      <!-- СЛОТ МАСКОТА BIGBOSS: 5 кликов подряд открывают секретный ползунок -->
+      <div class="mascot-slot" id="mascotContainer" title="BigBoss Slot (кликни 5 раз подряд)" aria-label="BigBoss Slot">
+        <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M233.3,597.78c0,181.79,191.92,225.48,266.4,225.48s283.68-26.83,283.68-220.08"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M233.3,494.44c0-73.91,55.24-209.06,209.06-209.06"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M407.86,399.24c-156.96,0-201.86-59.14-201.86-223.24"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M783.7,494.44c0-73.91-55.24-209.06-209.06-209.06"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M635.38,395.08c108.3,0,158.36-54.98,158.36-219.08"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M347.06,554.76c0-47.52,60.48-60.48,60.48-60.48"/>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="72px" d="M574.58,554.76c0-47.52,60.48-60.48,60.48-60.48"/>
+        </svg>
+      </div>
+    </aside>
+
+    <!-- Центральная сцена -->
+    <main class="sheet-main">
+      <header class="top-bar">
+        <div class="brand-title">MARK YATSIV <span>/</span> STUDIO</div>
+        <div class="top-meta">
+          <span>САНКТ-ПЕТЕРБУРГ</span>
+          <a href="https://dprofile.ru/pendotus" target="_blank" rel="noopener noreferrer" class="meta-link-dprofile">
+            DPROFILE.RU/PENDOTUS ↗
+          </a>
+          <div class="status-indicator">
+            <span class="status-badge-orange">STATUS</span>
+            <span>AVAILABLE</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="content-split">
+        <!-- Левая панель: активный кейс -->
+        <div class="stage-panel">
+          <div>
+            <div class="stage-header">
+              <span id="stageNum" class="stage-num">CASE-01 // 2026</span>
+              <span class="stage-hint">SELECTED WORK</span>
+            </div>
+            <h1 id="stageName" class="stage-name">Боксерский клуб «Кассиус»</h1>
+          </div>
+
+          <div id="stageImage" class="stage-image-card"></div>
+
+          <!-- ВСТАВИТЬ ЭТОТ БЛОК: Мобильный переключатель превью кейсов -->
+          <div class="stage-nav-mobile" aria-label="Переключение превью кейсов">
+            <button type="button" id="prevStageBtn" class="btn-stage-nav" aria-label="Предыдущий проект">← ПРЕДЫДУЩИЙ</button>
+            <span id="stageNavCounter" class="stage-nav-counter">01 / 06</span>
+            <button type="button" id="nextStageBtn" class="btn-stage-nav" aria-label="Следующий проект">СЛЕДУЮЩИЙ →</button>
+          </div>
+
+          <div class="stage-footer">
+            <p id="stageDesc" class="stage-description">
+              Суровая монохромная айдентика, акцидентная шрифтовая система ринга и фирменная экипировка.
+            </p>
+            <a id="btnOpenCase" href="project.html?id=1" class="btn-open-case page-transition-link">
+              Открыть кейс ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Правая панель: реестр проектов -->
+        <div class="index-panel">
+          <div class="index-header">
+            <span>ГОД</span>
+            <span>ПРОЕКТ / ДИСЦИПЛИНА</span>
+            <span>ОБЗОР</span>
+          </div>
+          <div id="projectRowsContainer" class="project-rows-list"></div>
+        </div>
+      </section>
+
+      <!-- Нижний бар: переключатель тем (АВТО / СВЕТЛАЯ / ТЕМНАЯ) вместо ползунка -->
+<!-- Нижний бар: переключатель тем + ссылки для мобилок -->
+      <footer class="bottom-utility-bar">
+        <div class="utility-theme-wrap">
+          <span class="utility-label">ТЕМА:</span>
+          <div class="theme-switcher-group">
+            <button class="btn-theme-toggle" data-theme-mode="light">СВЕТЛАЯ</button>
+            <button class="btn-theme-toggle" data-theme-mode="dark">ТЕМНАЯ</button>
+            <button class="btn-theme-toggle active" data-theme-mode="auto">ПО ВРЕМЕНИ</button>
+          </div>
+        </div>
+        
+        <!-- Ссылки для мобильных экранов (на десктопе скрыты, так как они в сайдбаре) -->
+        <div class="mobile-footer-links">
+          <a href="https://t.me/desigyatsiv" target="_blank" rel="noopener noreferrer" class="mobile-link">ТГ-КАНАЛ ↗</a>
+          <a href="https://t.me/pendotus" target="_blank" rel="noopener noreferrer" class="mobile-link accent">TELEGRAM ↗</a>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Правый край: вертикальные ссылки на ТГ и часы пользователя -->
+    <aside class="side-gutter side-gutter-right">
+      <div class="gutter-top-time">
+        <span class="vertical-label mono-time" id="userLiveClock">--:--:--</span>
+      </div>
+      <div class="gutter-bottom-links">
+        <a href="https://t.me/desigyatsiv" target="_blank" rel="noopener noreferrer" class="vertical-label channel-link" title="Telegram-канал шефа">
+          TELEGRAM КАНАЛ ↗
+        </a>
+        <a href="https://t.me/pendotus" target="_blank" rel="noopener noreferrer" class="vertical-label accent-link" title="Личный Telegram шефа">
+          TELEGRAM ↗
+        </a>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/ascii-background.js"></script>
+  <script src="js/theme-manager.js"></script>
+  <script src="js/interaction.js"></script>
+</body>
+</html>
