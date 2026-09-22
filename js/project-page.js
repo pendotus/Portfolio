@@ -105,15 +105,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Кнопка "Наверх" с пиксельной ASCII-стрелкой (только для страниц кейсов)
+// Кнопка "Наверх": работает строго на десктопе
   const scrollTopBtn = document.getElementById("scrollTopBtn");
   if (scrollTopBtn) {
     window.addEventListener("scroll", () => {
+      // Если это смартфон или высота экрана меньше 600px — JS даже не трогает кнопку
+      if (window.innerWidth <= 768 || window.innerHeight <= 600) {
+        scrollTopBtn.classList.remove("visible");
+        return;
+      }
+
       if (window.scrollY > 320) {
         scrollTopBtn.classList.add("visible");
       } else {
         scrollTopBtn.classList.remove("visible");
       }
-    });
+    }, { passive: true });
 
     scrollTopBtn.addEventListener("click", () => {
       window.scrollTo({
