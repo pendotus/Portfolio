@@ -468,6 +468,7 @@
   transition: var(--transition);
   display: inline-flex;
   align-items: center;
+  white-space: nowrap !important;
 }
 
 /* Левая кнопка навигации: при наведении подсветка слева */
@@ -507,6 +508,7 @@
   font-size: 12px;
   font-weight: 700;
   color: var(--accent-orange);
+  white-space: nowrap !important;
 }
 
 .detail-body-grid {
@@ -1000,10 +1002,23 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     line-height: 1.2;
   }
 
-  .stage-image-card {
+.stage-image-card {
     width: 100%;
-    height: 220px;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important; /* Точные пропорции 16:9 без обрезки краев */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin-bottom: 10px !important;
+  }
+
+  .detail-hero-cover {
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 16px;
   }
 
   /* Мобильный переключатель кейсов */
@@ -1169,14 +1184,28 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     gap: 16px;
   }
 
-  .project-pagination-bar {
+.project-pagination-bar {
     padding: 10px 12px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    box-sizing: border-box;
   }
 
   .pagination-btn {
-    font-size: 10px;
-    padding: 6px 8px;
+    font-size: 10px !important;
+    padding: 6px 8px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0;
+  }
+
+  .pagination-counter {
+    font-size: 10px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0;
+    padding: 0 4px;
   }
 
   /* ФИКС БАГА 1: КНОПКИ ВНИЗУ КЕЙСА НЕ ВЫПАДАЮТ, А ВСТАЮТ СТЕКОМ */
@@ -1198,10 +1227,9 @@ body:has(.project-page-wrapper) .sheet-wrapper {
     box-sizing: border-box !important;
   }
 
+CSS
+  /* Ликвидируем наложение кнопки на мобильных: браузеры используют свои нативные функции скролла */
   .scroll-top-btn {
-    bottom: 14px;
-    right: 14px;
-    width: 38px;
-    height: 38px;
+    display: none !important;
   }
 }

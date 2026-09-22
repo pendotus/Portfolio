@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="150 150 700 700">
+  <style>
+    path {
+      fill: none;
+      stroke: #111317; 
+      stroke-width: 72px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10;
+      transition: stroke 0.2s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      path {
+        stroke: #ffffff; 
+      }
+    }
+  </style>
+  <path d="M233.3,597.78c0,181.79,191.92,225.48,266.4,225.48s283.68-26.83,283.68-220.08"/>
+  <path d="M233.3,494.44c0-73.91,55.24-209.06,209.06-209.06"/>
+  <path d="M407.86,399.24c-156.96,0-201.86-59.14-201.86-223.24"/>
+  <path d="M783.7,494.44c0-73.91-55.24-209.06-209.06-209.06"/>
+  <path d="M635.38,395.08c108.3,0,158.36-54.98,158.36-219.08"/>
+  <path d="M347.06,554.76c0-47.52,60.48-60.48,60.48-60.48"/>
+  <path d="M574.58,554.76c0-47.52,60.48-60.48,60.48-60.48"/>
+</svg>
